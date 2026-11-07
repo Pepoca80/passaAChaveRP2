@@ -3,64 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Entrar – Passachave</title>
+  <title>Passachave – Aluguel de carros entre pessoas</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/inicio.css">
 </head>
 <body>
-  <main class="auth">
-    <div class="auth-card">
-      <div>
-        <div class="brand"><span class="logo"></span>Passachave</div>
-        <p class="mu">Aluguel de carros entre pessoas.</p>
+  <div class="wrap">
+    <header class="topo">
+      <a class="brand" href="index.html"><span class="logo"></span>Passachave</a>
+      <div id="acoes-topo" class="acoes">
+        <a class="btn s" href="login.html">Entrar</a>
+        <a class="btn s p" href="cadastro.html">Cadastrar</a>
       </div>
+    </header>
 
-      <h1>Entrar</h1>
+    <section class="banner">
+      <div class="banner-texto">
+        <span class="tag">Aluguel entre pessoas</span>
+        <h1>Alugue um carro de quem mora perto de você</h1>
+        <p class="mu">
+          A Passachave conecta quem precisa de um carro por alguns dias a quem tem um carro parado.
+          O proprietário anuncia, você pede as datas e só paga se ele aceitar.
+        </p>
+        <div class="acoes">
+          <a class="btn p" href="cadastro.html">Quero alugar</a>
+          <a class="btn" href="cadastro.html?tipo=proprietario">Quero anunciar meu carro</a>
+        </div>
+      </div>
+    </section>
 
-      <form id="form-login">
-        <label class="fld">E-mail
-          <input id="email" type="email" required autocomplete="email" placeholder="voce@email.com">
-        </label>
-        <label class="fld">Senha
-          <input id="senha" type="password" required autocomplete="current-password" placeholder="••••••">
-        </label>
-        <button class="btn p full" type="submit">Entrar</button>
-      </form>
+    <section class="passos" aria-label="Como funciona">
+      <div class="passo"><b>1</b><h3>Escolha o carro</h3><span class="mu">Filtre por cidade, tipo e preço por dia.</span></div>
+      <div class="passo"><b>2</b><h3>Escolha as datas</h3><span class="mu">Veja o valor total antes de pedir.</span></div>
+      <div class="passo"><b>3</b><h3>Espere a resposta</h3><span class="mu">Você só paga se o proprietário aceitar.</span></div>
+    </section>
 
-      <p class="mu rodape">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
-    </div>
-  </main>
+    <section class="vitrine">
+      <div class="vitrine-topo">
+        <h2>Carros disponíveis</h2>
+        <div class="setas">
+          <button class="btn s" id="seta-esq" aria-label="Anterior">‹</button>
+          <button class="btn s" id="seta-dir" aria-label="Próximo">›</button>
+        </div>
+      </div>
+      <div id="carrossel" class="carrossel">
+        <div class="carregando">Carregando anúncios…</div>
+      </div>
+      <p class="mu aviso-login">Para ver detalhes e fazer uma reserva, <a href="login.html">entre na sua conta</a> ou <a href="cadastro.html">cadastre-se</a>.</p>
+    </section>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
   <script src="js/config.js"></script>
   <script src="js/comum.js"></script>
-  <script>
-    // Se já estiver logado, vai direto para a tela certa
-    sb.auth.getSession().then(async ({ data }) => {
-      if (!data.session) return;
-      const perfil = await buscarPerfil(data.session.user.id);
-      if (perfil) location.href = paginaDoTipo(perfil.tipo);
-    });
-
-    $('#form-login').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const botao = e.submitter;
-      botao.disabled = true;
-
-      const { data, error } = await sb.auth.signInWithPassword({
-        email: $('#email').value.trim(),
-        password: $('#senha').value
-      });
-
-      if (error) {
-        toast(traduzErro(error));
-        botao.disabled = false;
-        return;
-      }
-
-      const perfil = await buscarPerfil(data.user.id);
-      location.href = paginaDoTipo(perfil?.tipo);
-    });
-  </script>
+  <script src="js/inicio.js"></script>
 </body>
 </html>

@@ -2,13 +2,6 @@
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-if (SUPABASE_URL.includes('SEU-PROJETO')) {
-  document.addEventListener('DOMContentLoaded', () => {
-    document.body.insertAdjacentHTML('afterbegin',
-      '<div class="aviso">Configure o Supabase em <b>js/config.js</b> antes de usar.</div>');
-  });
-}
-
 const $ = (seletor) => document.querySelector(seletor);
 
 // Evita que textos digitados pelo usuário virem HTML
@@ -80,14 +73,14 @@ async function exigirLogin(tipoEsperado) {
   const { data } = await sb.auth.getSession();
   const usuario = data.session?.user;
   if (!usuario) {
-    location.href = 'index.html';
+    location.href = 'login.html';
     return null;
   }
 
   const perfil = await buscarPerfil(usuario.id);
   if (!perfil) {
     await sb.auth.signOut();
-    location.href = 'index.html';
+    location.href = 'login.html';
     return null;
   }
   if (perfil.tipo !== tipoEsperado) {
@@ -100,6 +93,7 @@ async function exigirLogin(tipoEsperado) {
     await sb.auth.signOut();
     location.href = 'index.html';
   };
+
   return { usuario, perfil };
 }
 

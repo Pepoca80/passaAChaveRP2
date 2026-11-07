@@ -81,15 +81,16 @@ alter table public.perfis   enable row level security;
 alter table public.veiculos enable row level security;
 alter table public.reservas enable row level security;
 
--- Perfis: usuários logados podem ver nomes; cada um edita só o seu.
+-- Perfis: qualquer pessoa vê nomes (para a vitrine); cada um edita só o seu.
 create policy "perfis_ver" on public.perfis for select
-  to authenticated using (true);
+  to anon, authenticated using (true);
 create policy "perfis_editar" on public.perfis for update
   to authenticated using (id = auth.uid()) with check (id = auth.uid());
 
--- Veículos: todos os logados veem; só proprietários anunciam; só o dono altera.
+-- Veículos: anúncios ativos aparecem na vitrine para todos (inclusive sem login);
+-- o dono sempre vê os seus. Só proprietários anunciam; só o dono altera.
 create policy "veiculos_ver" on public.veiculos for select
-  to authenticated using (true);
+  to anon, authenticated using (ativo or dono_id = auth.uid());
 create policy "veiculos_criar" on public.veiculos for insert
   to authenticated with check (
     dono_id = auth.uid()

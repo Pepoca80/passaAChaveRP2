@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar – Passachave</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="auth">
+    <div class="auth-card">
+      <div>
+        <a class="brand" href="index.html"><span class="logo"></span>Passachave</a>
+        <p class="mu">Aluguel de carros entre pessoas.</p>
+      </div>
+
+      <h1>Entrar</h1>
+
+      <form id="form-login">
+        <label class="fld">E-mail
+          <input id="email" type="email" required autocomplete="email" placeholder="voce@email.com">
+        </label>
+        <label class="fld">Senha
+          <input id="senha" type="password" required autocomplete="current-password" placeholder="••••••">
+        </label>
+        <button class="btn p full" type="submit">Entrar</button>
+      </form>
+
+      <p class="mu rodape">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+      <p class="mu rodape"><a href="index.html">‹ Voltar para o início</a></p>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/comum.js"></script>
+  <script>
+    // Se já estiver logado, vai direto para a tela certa
+    sb.auth.getSession().then(async ({ data }) => {
+      if (!data.session) return;
+      const perfil = await buscarPerfil(data.session.user.id);
+      if (perfil) location.href = paginaDoTipo(perfil.tipo);
+    });
+
+    $('#form-login').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const botao = e.submitter;
+      botao.disabled = true;
+
+      const { data, error } = await sb.auth.signInWithPassword({
+        email: $('#email').value.trim(),
+        password: $('#senha').value
+      });
+
+      if (error) {
+        toast(traduzErro(error));
+        botao.disabled = false;
+        return;
+      }
+
+      const perfil = await buscarPerfil(data.user.id);
+      location.href = paginaDoTipo(perfil?.tipo);
+    });
+  </script>
+</body>
+</html>

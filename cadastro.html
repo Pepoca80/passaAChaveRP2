@@ -43,7 +43,7 @@
         <button class="btn p full" type="submit">Criar conta</button>
       </form>
 
-      <p class="mu rodape">Já tem conta? <a href="index.html">Entrar</a></p>
+      <p class="mu rodape">Já tem conta? <a href="login.html">Entrar</a></p>
     </div>
   </main>
 
@@ -51,6 +51,11 @@
   <script src="js/config.js"></script>
   <script src="js/comum.js"></script>
   <script>
+    // Link vindo da home com ?tipo=proprietario já marca a opção certa
+    if (new URLSearchParams(location.search).get('tipo') === 'proprietario') {
+      document.querySelector('input[name="tipo"][value="proprietario"]').checked = true;
+    }
+
     $('#form-cadastro').addEventListener('submit', async (e) => {
       e.preventDefault();
       const botao = e.submitter;
@@ -76,7 +81,7 @@
       } else {
         // Confirmação de e-mail ligada no Supabase
         toast('Conta criada! Confirme pelo link enviado ao seu e-mail e depois entre.');
-        setTimeout(() => location.href = 'index.html', 3500);
+        setTimeout(() => location.href = 'login.html', 3500);
       }
     });
   </script>

@@ -6,7 +6,8 @@ Aluguel de carros entre pessoas. Projeto acadêmico em HTML, CSS e JavaScript pu
 
 | Arquivo | Tela |
 |---|---|
-| `index.html` | Login |
+| `index.html` | Início: explicação do projeto e carrossel de anúncios (visível sem login) |
+| `login.html` | Login |
 | `cadastro.html` | Cadastro (escolhe "Quero alugar" ou "Sou proprietário") |
 | `locatario.html` | Buscar carros, ver detalhes, pedir reserva, acompanhar "Minhas reservas" |
 | `proprietario.html` | Ver e responder pedidos (com resumo de ganhos), anunciar/pausar/remover carros |
@@ -16,10 +17,11 @@ Depois do login, cada usuário vai automaticamente para a tela do seu tipo de co
 ## Estrutura
 
 ```
-index.html, cadastro.html, locatario.html, proprietario.html
+index.html, login.html, cadastro.html, locatario.html, proprietario.html
 css/style.css          estilos
 js/config.js           URL e chave do Supabase
 js/comum.js            cliente Supabase e funções compartilhadas
+js/inicio.js           carrossel da página inicial
 js/locatario.js        lógica da tela do locatário
 js/proprietario.js     lógica da tela do proprietário
 supabase/schema.sql    tabelas e regras de segurança
