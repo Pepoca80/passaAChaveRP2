@@ -1,147 +1,66 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Passachave – Locação de veículos P2P</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
-<style>
-:root{--bg:#eef1f4;--surf:#fff;--ink:#14233a;--mut:#566376;--line:#cfd6df;--acc:#f2c230;--ok:#1d7a4d;--bad:#b3341f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1621;--surf:#16222f;--ink:#e8edf3;--mut:#9aa7b8;--line:#2a3a4c;--ok:#4cc28a;--bad:#ff8a73}}
-:root[data-theme="dark"]{--bg:#0e1621;--surf:#16222f;--ink:#e8edf3;--mut:#9aa7b8;--line:#2a3a4c;--ok:#4cc28a;--bad:#ff8a73}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Instrument Sans",system-ui,sans-serif}
-h1,h2,h3,.brand{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;line-height:1.15}
-button,input,select{font:inherit;color:inherit}
-button{cursor:pointer}
-:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 20px 48px}
-header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:18px 0}
-.brand{font-size:24px;font-weight:800}
-.seg{display:flex;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden}
-.seg button{border:0;background:var(--surf);padding:10px 16px;min-height:44px;font-weight:500}
-.seg button[aria-pressed="true"]{background:var(--acc);color:#14233a;font-weight:600}
-nav{display:flex;gap:4px;border-bottom:1.5px solid var(--line);margin-bottom:24px;overflow-x:auto}
-nav button{border:0;background:none;padding:12px 16px;min-height:44px;color:var(--mut);border-bottom:3px solid transparent;white-space:nowrap}
-nav button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--acc);font-weight:600}
-.n{display:inline-block;min-width:20px;margin-left:6px;padding:0 6px;border-radius:10px;background:var(--acc);color:#14233a;font-size:12px;font-weight:600;text-align:center}
-.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
-.filters input,.filters select,.fld input,.fld select{min-height:44px;padding:8px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--surf)}
-.filters input{flex:1;min-width:180px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
-.card{background:var(--surf);border:1.5px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
-.card .b{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
-.art{height:130px;display:flex;align-items:center;justify-content:center;background:hsl(var(--h) 30% 86%);color:hsl(var(--h) 45% 32%)}
-.art svg{width:120px}
-.art.big{height:260px;border-radius:12px}.art.big svg{width:220px}
-.row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.mu{color:var(--mut);font-size:14px}
-.btn{border:1.5px solid var(--ink);background:var(--surf);border-radius:8px;padding:10px 16px;min-height:44px;font-weight:600}
-.btn.p{background:var(--ink);color:var(--bg)}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.s{min-height:36px;padding:6px 12px;font-size:14px}
-.det{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
-@media (max-width:820px){.det{grid-template-columns:1fr}}
-.box{background:var(--surf);border:1.5px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px}
-.fld{display:flex;flex-direction:column;gap:4px;font-size:14px}
-.tot{border-top:1.5px solid var(--line);padding-top:10px;font-weight:600}
-.list{display:flex;flex-direction:column;gap:12px}
-.st{font-size:13px;font-weight:600;padding:2px 10px;border-radius:999px;border:1.5px solid currentColor}
-.st.pending{color:var(--mut)}.st.accepted{color:var(--ok)}.st.declined,.st.cancelled{color:var(--bad)}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px}
-.kpi b{font:800 26px "Bricolage Grotesque",system-ui,sans-serif}
-.empty{padding:40px 20px;text-align:center;border:1.5px dashed var(--line);border-radius:12px;color:var(--mut)}
-#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:10px;max-width:90vw;opacity:0;pointer-events:none;transition:opacity .2s}
-#toast.on{opacity:1}
-footer{margin-top:32px;text-align:center}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar – Passachave</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="wrap" id="app"></div>
-<div id="toast" role="status" aria-live="polite"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-<script>
-// Para usar o Supabase, preencha com a URL e a chave anon do seu projeto. Vazio = modo local.
-const CFG={url:'',key:''},K='passachave-v1',TODAY='2026-10-27';
-const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-const dt=s=>new Date(s+'T00:00').toLocaleDateString('pt-BR');
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const $=s=>document.querySelector(s);
-function seedV(){return[
-{id:1,name:'Honda Civic 2019',type:'Sedã',city:'São Paulo',price:180,seats:5,gear:'Automático',owner:'Marina',rating:'4,9',active:true},
-{id:2,name:'Fiat Mobi 2021',type:'Compacto',city:'São Paulo',price:95,seats:4,gear:'Manual',owner:'Rafael',rating:'4,7',active:true},
-{id:3,name:'Jeep Renegade 2020',type:'SUV',city:'Campinas',price:210,seats:5,gear:'Automático',owner:'Helena',rating:'4,8',active:true},
-{id:4,name:'Chevrolet Spin 2018',type:'Minivan',city:'São Paulo',price:150,seats:7,gear:'Manual',owner:'Otávio',rating:'4,6',active:true},
-{id:5,name:'Toyota Corolla Cross 2022',type:'SUV',city:'Santos',price:260,seats:5,gear:'Automático',owner:'Beatriz',rating:'5,0',active:true},
-{id:6,name:'Renault Kwid 2022',type:'Compacto',city:'Campinas',price:80,seats:4,gear:'Manual',owner:'Diego',rating:'4,5',active:true},
-{id:8,name:'Hyundai HB20 2022',type:'Compacto',city:'São Paulo',price:110,seats:5,gear:'Manual',owner:'Você',rating:'4,8',active:true,own:true}]}
-function seedB(){return[
-{id:101,vid:8,renter:'Carla M.',from:'2026-11-05',to:'2026-11-08',sub:330,total:330,status:'pending'},
-{id:102,vid:8,renter:'Pedro S.',from:'2026-11-07',to:'2026-11-10',sub:330,total:330,status:'pending'},
-{id:103,vid:8,renter:'Lucas R.',from:'2026-10-12',to:'2026-10-15',sub:330,total:330,status:'accepted'}]}
-const ONLINE=!!(CFG.url&&CFG.key&&window.supabase),sb=ONLINE?window.supabase.createClient(CFG.url,CFG.key):null,DEL=[],nid=()=>ONLINE?crypto.randomUUID():Date.now();
-let saved=null;try{saved=JSON.parse(localStorage.getItem(K))}catch(e){}
-const S={me:null,role:saved?.role||'renter',view:'',sel:null,f:{q:'',type:'',max:''},d:{from:'',to:'',prot:'basic'},vehicles:ONLINE?[]:saved?.v||seedV(),bookings:ONLINE?[]:saved?.b||seedB()};
-S.view=S.role==='renter'?'search':'requests';
-function save(){if(ONLINE){sync();return}try{localStorage.setItem(K,JSON.stringify({v:S.vehicles,b:S.bookings,role:S.role}))}catch(e){}}
-async function sync(){if(!ONLINE||!S.me)return;const u=S.me.id,nm=S.me.email.split('@')[0],r=[];
-const vs=S.vehicles.filter(v=>v.own).map(v=>({id:v.id,owner_id:u,owner_name:nm,name:v.name,type:v.type,city:v.city,price:v.price,seats:v.seats,gear:v.gear,active:v.active}));
-if(vs.length)r.push(sb.from('vehicles').upsert(vs));
-const mb=S.bookings.filter(b=>b.mine&&['pending','cancelled'].includes(b.status)).map(b=>({id:b.id,vehicle_id:b.vid,renter_id:u,renter_name:nm,from_date:b.from,to_date:b.to,sub:b.sub,total:b.total,status:b.status}));
-if(mb.length)r.push(sb.from('bookings').upsert(mb));
-S.bookings.filter(b=>!b.mine&&['accepted','declined'].includes(b.status)&&mineV().includes(b.vid)).forEach(b=>r.push(sb.from('bookings').update({status:b.status}).eq('id',b.id)));
-DEL.splice(0).forEach(id=>r.push(sb.from('vehicles').delete().eq('id',id)));
-const er=(await Promise.all(r)).find(x=>x.error);if(er){toast('Erro ao salvar: '+er.error.message);await pull();render()}}
-async function pull(){if(!ONLINE||!S.me)return;const[v,b]=await Promise.all([sb.from('vehicles').select('*'),sb.from('bookings').select('*')]);
-if(v.error||b.error){toast('Erro ao carregar: '+(v.error||b.error).message);return}
-S.vehicles=v.data.map(x=>({id:x.id,name:x.name,type:x.type,city:x.city,price:+x.price,seats:x.seats,gear:x.gear,owner:x.owner_name,rating:'novo',active:x.active,own:x.owner_id===S.me.id}));
-S.bookings=b.data.map(x=>({id:x.id,vid:x.vehicle_id,renter:x.renter_name,mine:x.renter_id===S.me.id,from:x.from_date,to:x.to_date,sub:+x.sub,total:+x.total,status:x.status}))}
-async function boot(){if(ONLINE){const{data}=await sb.auth.getSession();S.me=data.session?.user||null;await pull()}render()}
-if(ONLINE)sb.auth.onAuthStateChange((_e,s)=>{const u=s?.user||null;if(u?.id!==S.me?.id){S.me=u;pull().then(render)}});
-let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),3800)}
-const veh=id=>S.vehicles.find(v=>v.id==id);
-const art=v=>`<div class="art" style="--h:${[...String(v.id)].reduce((s,c)=>s+c.charCodeAt(0),0)*47%360}"><svg viewBox="0 0 120 50" aria-hidden="true"><path d="M8 34l8-14c2-4 6-6 10-6h40c5 0 9 2 12 6l8 8c6 1 12 3 12 8v4H8z" fill="currentColor"/><circle cx="32" cy="40" r="7" fill="var(--surf)"/><circle cx="92" cy="40" r="7" fill="var(--surf)"/></svg></div>`;
-const clash=(vid,f,t,ign)=>S.bookings.some(b=>b.vid==vid&&b.id!==ign&&b.status==='accepted'&&f<b.to&&t>b.from);
-const ST={pending:'Aguardando resposta',accepted:'Confirmada',declined:'Recusada',cancelled:'Cancelada'};
-function calc(){const v=veh(S.sel),{from,to,prot}=S.d;if(!from||!to||to<=from)return null;const n=Math.round((new Date(to)-new Date(from))/864e5),sub=n*v.price,fee=Math.round(sub*.12),pr=prot==='full'?n*18:0;return{n,sub,fee,pr,total:sub+fee+pr}}
-function cards(){const{q,type,max}=S.f;const l=S.vehicles.filter(v=>v.active&&!v.own&&(!q||(v.name+v.city).toLowerCase().includes(q.toLowerCase()))&&(!type||v.type===type)&&(!max||v.price<=+max));
-if(!l.length)return`<div class="empty">Nenhum veículo encontrado. Tente outra cidade ou aumente o preço máximo.</div>`;
-return`<div class="grid">${l.map(v=>`<article class="card">${art(v)}<div class="b"><div class="row"><h3>${esc(v.name)}</h3><span>★ ${v.rating}</span></div><div class="mu">${esc(v.city)} · ${v.gear} · ${v.seats} lugares</div><div class="row"><span><b>${money(v.price)}</b> / dia</span><button class="btn s p" data-act="open" data-id="${v.id}">Ver detalhes</button></div></div></article>`).join('')}</div>`}
-function sum(){const c=calc(),v=veh(S.sel);if(!c)return`<div class="mu">Escolha as datas de retirada e devolução para ver o valor.</div><button class="btn p" disabled>Solicitar reserva</button>`;
-const bad=clash(v.id,S.d.from,S.d.to);
-return`<div class="row"><span>${money(v.price)} × ${c.n} diária${c.n>1?'s':''}</span><span>${money(c.sub)}</span></div><div class="row"><span>Taxa da plataforma</span><span>${money(c.fee)}</span></div><div class="row"><span>Proteção completa</span><span>${money(c.pr)}</span></div><div class="row tot"><span>Total</span><span>${money(c.total)}</span></div>${bad?`<div style="color:var(--bad)">Indisponível nessas datas. Escolha outro período.</div>`:`<div class="mu">Você só paga se o proprietário aceitar.</div>`}<button class="btn p" data-act="request" ${bad?'disabled':''}>Solicitar reserva</button>`}
-function detail(){const v=veh(S.sel);return`<button class="btn s" data-act="back">‹ Voltar aos resultados</button><div class="det" style="margin-top:16px"><div class="list">${art(v).replace('class="art"','class="art big"')}<h1>${esc(v.name)}</h1><div class="mu">${esc(v.city)} · ${v.gear} · ${v.seats} lugares · ★ ${v.rating}</div><div class="box"><b>Proprietário: ${esc(v.owner)}</b><span class="mu">Identidade verificada. Retirada em local combinado pelo chat.</span></div></div>
-<div class="box"><div><b style="font-size:24px">${money(v.price)}</b> <span class="mu">/ dia</span></div><label class="fld">Retirada<input type="date" data-d="from" min="${TODAY}" value="${S.d.from}"></label><label class="fld">Devolução<input type="date" data-d="to" min="${TODAY}" value="${S.d.to}"></label><label class="fld">Proteção<select data-d="prot"><option value="basic" ${S.d.prot==='basic'?'selected':''}>Básica (incluída)</option><option value="full" ${S.d.prot==='full'?'selected':''}>Completa (+ R$ 18 / dia)</option></select></label><div class="list" id="sum" style="gap:8px">${sum()}</div></div></div>`}
-function trips(){const l=S.bookings.filter(b=>b.mine).reverse();if(!l.length)return`<div class="empty">Você ainda não fez nenhuma solicitação.<br><br><button class="btn p" data-act="tab" data-v="search">Buscar veículos</button></div>`;
-return`<div class="list">${l.map(b=>{const v=veh(b.vid);return`<div class="box"><div class="row"><h3>${esc(v.name)}</h3><span class="st ${b.status}">${ST[b.status]}</span></div><div class="mu">${dt(b.from)} a ${dt(b.to)} · ${money(b.total)} · ${esc(v.owner)}</div><div class="row" style="justify-content:flex-start">${b.status==='pending'&&!ONLINE?`<button class="btn s" data-act="sim" data-id="${b.id}">Simular aceite do proprietário</button>`:''}${b.status==='pending'||b.status==='accepted'?`<button class="btn s" data-act="cancel" data-id="${b.id}">Cancelar</button>`:''}</div></div>`}).join('')}</div>`}
-const mineV=()=>S.vehicles.filter(v=>v.own).map(v=>v.id);
-function reqs(){const l=S.bookings.filter(b=>!b.mine&&mineV().includes(b.vid)),g=l.filter(b=>b.status==='accepted').reduce((s,b)=>s+b.sub,0),p=l.filter(b=>b.status==='pending').length;
-return`<div class="kpis"><div class="box kpi"><span class="mu">Ganhos confirmados</span><b>${money(g)}</b></div><div class="box kpi"><span class="mu">Solicitações pendentes</span><b>${p}</b></div><div class="box kpi"><span class="mu">Reservas confirmadas</span><b>${l.filter(b=>b.status==='accepted').length}</b></div></div>`+(l.length?`<div class="list">${[...l].sort((a,b)=>(b.status==='pending')-(a.status==='pending')).map(b=>`<div class="box"><div class="row"><h3>${esc(b.renter)}</h3><span class="st ${b.status}">${ST[b.status]}</span></div><div class="mu">${esc(veh(b.vid).name)} · ${dt(b.from)} a ${dt(b.to)} · ${money(b.sub)}</div>${b.status==='pending'?`<div class="row" style="justify-content:flex-start"><button class="btn s p" data-act="accept" data-id="${b.id}">Aceitar</button><button class="btn s" data-act="decline" data-id="${b.id}">Recusar</button></div>`:''}</div>`).join('')}</div>`:`<div class="empty">Nenhuma solicitação por enquanto.</div>`)}
-function fleet(){const l=S.vehicles.filter(v=>v.own);return`<div class="list">${l.length?l.map(v=>`<div class="box"><div class="row"><h3>${esc(v.name)}</h3><span class="st ${v.active?'accepted':'pending'}">${v.active?'Anúncio ativo':'Pausado'}</span></div><div class="mu">${esc(v.city)} · ${v.type} · ${money(v.price)} / dia</div><div class="row" style="justify-content:flex-start"><button class="btn s" data-act="toggle" data-id="${v.id}">${v.active?'Pausar anúncio':'Reativar anúncio'}</button><button class="btn s" data-act="del" data-id="${v.id}">Remover</button></div></div>`).join(''):`<div class="empty">Você ainda não anunciou nenhum veículo.</div>`}
-<div class="box"><h3>Anunciar veículo</h3><label class="fld">Modelo e ano<input id="nv-n" placeholder="Ex.: Volkswagen Polo 2021"></label><label class="fld">Cidade<input id="nv-c" value="São Paulo"></label><label class="fld">Tipo<select id="nv-t"><option>Compacto</option><option>Sedã</option><option>SUV</option><option>Minivan</option></select></label><label class="fld">Preço por dia (R$)<input id="nv-p" type="number" min="1" placeholder="120"></label><button class="btn p" data-act="add">Publicar anúncio</button></div></div>`}
-function loginView(){return`<div class="box" style="max-width:420px;margin:24px auto"><h2>Entrar no Passachave</h2><span class="mu">Enviamos um link de acesso para o seu e-mail.</span><label class="fld">E-mail<input id="em" type="email" placeholder="voce@email.com" autocomplete="email"></label><button class="btn p" data-act="login">Receber link de acesso</button></div>`}
-function render(){const r=S.role==='renter',tabs=r?[['search','Buscar'],['trips','Minhas viagens']]:[['requests','Solicitações'],['fleet','Meus veículos']],p=S.bookings.filter(b=>!b.mine&&b.status==='pending'&&mineV().includes(b.vid)).length;
-const body=ONLINE&&!S.me?loginView():S.view==='detail'?detail():S.view==='search'?`<div class="filters"><input id="fq" data-f="q" placeholder="Cidade ou modelo" value="${esc(S.f.q)}" aria-label="Cidade ou modelo"><select data-f="type" aria-label="Tipo"><option value="">Todos os tipos</option>${['Compacto','Sedã','SUV','Minivan'].map(t=>`<option ${S.f.type===t?'selected':''}>${t}</option>`).join('')}</select><input data-f="max" type="number" min="0" placeholder="Preço máx. / dia" value="${S.f.max}" aria-label="Preço máximo por dia" style="max-width:170px"></div><div id="res">${cards()}</div>`:S.view==='trips'?trips():S.view==='requests'?reqs():fleet();
-$('#app').innerHTML=`<header><div class="brand">Passachave</div><div class="seg" role="group" aria-label="Perfil"><button data-act="role" data-v="renter" aria-pressed="${r}">Quero alugar</button><button data-act="role" data-v="owner" aria-pressed="${!r}">Sou proprietário</button></div></header><nav>${tabs.map(([k,l])=>`<button data-act="tab" data-v="${k}" aria-current="${S.view===k||(k==='search'&&S.view==='detail')}">${l}${k==='requests'&&p?`<span class="n">${p}</span>`:''}</button>`).join('')}</nav>${body}<footer>${ONLINE?(S.me?`<span class="mu">${esc(S.me.email)}</span> <button class="btn s" data-act="logout">Sair</button>`:''):`<button class="btn s" data-act="reset">Restaurar dados de exemplo</button>`}</footer>`}
-document.addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;const a=t.dataset.act,id=t.dataset.id,b=S.bookings.find(x=>String(x.id)===id);
-if(a==='login'){sb.auth.signInWithOtp({email:$('#em').value.trim(),options:{emailRedirectTo:location.href.split('#')[0]}}).then(r=>toast(r.error?r.error.message:'Enviamos um link de acesso para o seu e-mail.'));return}
-if(a==='logout'){sb.auth.signOut();return}
-if(a==='role'){S.role=t.dataset.v;S.view=S.role==='renter'?'search':'requests';S.sel=null}
-else if(a==='tab'){S.role=['search','trips'].includes(t.dataset.v)?'renter':'owner';S.view=t.dataset.v;S.sel=null}
-else if(a==='open'){S.sel=veh(id).id;S.d={from:'',to:'',prot:'basic'};S.view='detail'}
-else if(a==='back'){S.view='search'}
-else if(a==='request'){const c=calc();if(!c)return;S.bookings.push({id:nid(),vid:S.sel,renter:'Você',mine:true,from:S.d.from,to:S.d.to,sub:c.sub,total:c.total,status:'pending'});S.view='trips';S.sel=null;toast('Solicitação enviada. Você só paga se o proprietário aceitar.')}
-else if(a==='cancel'){b.status='cancelled';toast('Reserva cancelada.')}
-else if(a==='sim'||a==='accept'){if(clash(b.vid,b.from,b.to,b.id)){toast('Já existe uma reserva confirmada nessas datas. Recuse esta solicitação.');return}b.status='accepted';toast('Reserva confirmada.')}
-else if(a==='decline'){b.status='declined';toast('Solicitação recusada.')}
-else if(a==='toggle'){const v=veh(id);v.active=!v.active}
-else if(a==='del'){S.vehicles=S.vehicles.filter(v=>String(v.id)!==id);DEL.push(id);toast('Veículo removido.')}
-else if(a==='add'){const n=$('#nv-n').value.trim(),p=+$('#nv-p').value;if(!n||!(p>0)){toast('Informe o modelo e um preço por dia maior que zero.');return}S.vehicles.push({id:nid(),name:n,type:$('#nv-t').value,city:$('#nv-c').value.trim()||'São Paulo',price:p,seats:5,gear:'Manual',owner:'Você',rating:'novo',active:true,own:true});toast('Anúncio publicado.')}
-else if(a==='reset'){S.vehicles=seedV();S.bookings=seedB();S.view=S.role==='renter'?'search':'requests';toast('Dados de exemplo restaurados.')}
-save();render()});
-document.addEventListener('input',e=>{const t=e.target;if(t.dataset.f){S.f[t.dataset.f]=t.value;$('#res').innerHTML=cards()}else if(t.dataset.d){S.d[t.dataset.d]=t.value;$('#sum').innerHTML=sum()}});
-boot();
-</script>
+  <main class="auth">
+    <div class="auth-card">
+      <div>
+        <div class="brand"><span class="logo"></span>Passachave</div>
+        <p class="mu">Aluguel de carros entre pessoas.</p>
+      </div>
+
+      <h1>Entrar</h1>
+
+      <form id="form-login">
+        <label class="fld">E-mail
+          <input id="email" type="email" required autocomplete="email" placeholder="voce@email.com">
+        </label>
+        <label class="fld">Senha
+          <input id="senha" type="password" required autocomplete="current-password" placeholder="••••••">
+        </label>
+        <button class="btn p full" type="submit">Entrar</button>
+      </form>
+
+      <p class="mu rodape">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/comum.js"></script>
+  <script>
+    // Se já estiver logado, vai direto para a tela certa
+    sb.auth.getSession().then(async ({ data }) => {
+      if (!data.session) return;
+      const perfil = await buscarPerfil(data.session.user.id);
+      if (perfil) location.href = paginaDoTipo(perfil.tipo);
+    });
+
+    $('#form-login').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const botao = e.submitter;
+      botao.disabled = true;
+
+      const { data, error } = await sb.auth.signInWithPassword({
+        email: $('#email').value.trim(),
+        password: $('#senha').value
+      });
+
+      if (error) {
+        toast(traduzErro(error));
+        botao.disabled = false;
+        return;
+      }
+
+      const perfil = await buscarPerfil(data.user.id);
+      location.href = paginaDoTipo(perfil?.tipo);
+    });
+  </script>
 </body>
 </html>

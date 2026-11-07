@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alugar – Passachave</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topo">
+      <div class="brand"><span class="logo"></span>Passachave</div>
+      <div class="usuario">
+        <span class="tag">Locatário</span>
+        <span id="usuario-nome"></span>
+        <button id="btn-sair" class="btn s">Sair</button>
+      </div>
+    </header>
+
+    <nav class="abas">
+      <button data-acao="aba" data-aba="buscar">Buscar carros</button>
+      <button data-acao="aba" data-aba="reservas">Minhas reservas</button>
+    </nav>
+
+    <main id="conteudo"><div class="carregando">Carregando…</div></main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/locatario.js"></script>
+</body>
+</html>

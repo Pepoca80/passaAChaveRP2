@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Criar conta – Passachave</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="auth">
+    <div class="auth-card">
+      <div>
+        <a class="brand" href="index.html"><span class="logo"></span>Passachave</a>
+        <p class="mu">Aluguel de carros entre pessoas.</p>
+      </div>
+
+      <h1>Criar conta</h1>
+
+      <form id="form-cadastro">
+        <div class="escolha" role="radiogroup" aria-label="Tipo de conta">
+          <label>
+            <input type="radio" name="tipo" value="locatario" checked>
+            <b>Quero alugar</b>
+            <span class="mu">Encontre um carro</span>
+          </label>
+          <label>
+            <input type="radio" name="tipo" value="proprietario">
+            <b>Sou proprietário</b>
+            <span class="mu">Anuncie seu carro</span>
+          </label>
+        </div>
+
+        <label class="fld">Nome
+          <input id="nome" required autocomplete="name" placeholder="Seu nome">
+        </label>
+        <label class="fld">E-mail
+          <input id="email" type="email" required autocomplete="email" placeholder="voce@email.com">
+        </label>
+        <label class="fld">Senha
+          <input id="senha" type="password" required minlength="6" autocomplete="new-password" placeholder="Mínimo de 6 caracteres">
+        </label>
+        <button class="btn p full" type="submit">Criar conta</button>
+      </form>
+
+      <p class="mu rodape">Já tem conta? <a href="index.html">Entrar</a></p>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/comum.js"></script>
+  <script>
+    $('#form-cadastro').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const botao = e.submitter;
+      const tipo = document.querySelector('input[name="tipo"]:checked').value;
+      botao.disabled = true;
+
+      // nome e tipo vão nos metadados; o trigger do banco cria o perfil com eles
+      const { data, error } = await sb.auth.signUp({
+        email: $('#email').value.trim(),
+        password: $('#senha').value,
+        options: { data: { nome: $('#nome').value.trim(), tipo } }
+      });
+
+      if (error) {
+        toast(traduzErro(error));
+        botao.disabled = false;
+        return;
+      }
+
+      if (data.session) {
+        // Confirmação de e-mail desligada: já entra direto
+        location.href = paginaDoTipo(tipo);
+      } else {
+        // Confirmação de e-mail ligada no Supabase
+        toast('Conta criada! Confirme pelo link enviado ao seu e-mail e depois entre.');
+        setTimeout(() => location.href = 'index.html', 3500);
+      }
+    });
+  </script>
+</body>
+</html>
